@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Organizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .event-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px;
+    }
+
+    .event-item {
+      background-color: #ffffff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-event-form {
+      margin: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Event Organizer</h1>
+</header>
+
+<!-- Event List -->
+<div id="eventList">
+  <h2>Upcoming Events</h2>
+  <ul class="event-list">
+    <li class="event-item">
+      <strong>Workshop on Web Development</strong><br>
+      Date: 2025-02-20<br>
+      Location: Online
+    </li>
+    <li class="event-item">
+      <strong>Coding Bootcamp</strong><br>
+      Date: 2025-03-15<br>
+      Location: Tech Park
+    </li>
+  </ul>
+</div>
+
+<!-- Add Event Form -->
+<div class="add-event-form">
+  <h2>Add a New Event</h2>
+  <form id="eventForm">
+    <input type="text" id="eventTitle" placeholder="Event Title" required><br>
+    <textarea id="eventDescription" placeholder="Event Description" required></textarea><br>
+    <input type="date" id="eventDate" required><br>
+    <input type="text" id="eventLocation" placeholder="Event Location" required><br>
+    <button type="submit">Add Event</button>
+  </form>
+</div>
+
+<script>
+  // Add event functionality
+  document.getElementById('eventForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const title = document.getElementById('eventTitle').value;
+    const description = document.getElementById('eventDescription').value;
+    const date = document.getElementById('eventDate').value;
+    const location = document.getElementById('eventLocation').value;
+
+    // Create new event element
+    const eventList = document.querySelector('.event-list');
+    const newEvent = document.createElement('li');
+    newEvent.classList.add('event-item');
+    newEvent.innerHTML = `
+      <strong>${title}</strong><br>
+      Date: ${date}<br>
+      Location: ${location}<br>
+      Description: ${description}
+    `;
+
+    // Add new event to the list
+    eventList.appendChild(newEvent);
+
+    // Clear the form
+    document.getElementById('eventForm').reset();
+  });
+</script>
+
+</body>
+</html>
